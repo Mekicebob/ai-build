@@ -1,0 +1,47 @@
+## Fonctionnalité principale
+Ce workflow implémente un assistant conversationnel intelligent utilisant la technologie RAG (Retrieval-Augmented Generation) qui répond aux questions en s'appuyant sur des documents stockés dans Google Drive, notamment des notes de réunion.
+
+## Architecture du workflow
+
+### 1. Gestion automatique des documents
+- **Surveillance continue** : Vérifie toutes les minutes les nouveaux fichiers ou modifications dans le dossier "Note des Réunions" sur Google Drive
+- **Préparation des documents** :
+  - Téléchargement des fichiers depuis Google Drive
+  - Extraction du texte (avec conversion automatique des formats Google Docs)
+  - Découpage en segments plus petits via "Recursive Character Text Splitter"
+- **Indexation vectorielle** :
+  - Transformation des segments en vecteurs d'embeddings via OpenAI
+  - Stockage dans une base de données vectorielle Supabase
+  - Mise à jour automatique (suppression des anciennes versions avant indexation)
+
+### 2. Interface conversationnelle
+- **Réception des questions** : Via un webhook qui peut être intégré à différentes interfaces
+- **Traitement des requêtes** :
+  - Extraction de la question et de l'identifiant de session (basé sur l'IP)
+  - Connexion à l'agent IA avec accès aux outils nécessaires
+- **Génération de réponses** :
+  - Recherche sémantique dans la base de documents pour trouver les informations pertinentes
+  - Formulation de réponses contextuelles en combinant l'IA générative et les documents trouvés
+  - Renvoi des réponses au format approprié
+
+### 3. Composants d'intelligence artificielle
+- **Modèle principal** : GPT-4o d'OpenAI pour la génération de texte
+- **Embeddings** : "text-embedding-3-small" pour la vectorisation efficace des documents
+- **Mémoire de conversation** : Stockage PostgreSQL pour maintenir le contexte entre les interactions
+- **Outils complémentaires** : Intégration avec Google Calendar pour gérer les événements
+
+## Avantages techniques
+- Base de connaissances dynamique qui s'actualise automatiquement
+- Réponses contextualisées grâce à la technologie RAG
+- Persistance des conversations pour chaque utilisateur
+- Intégration avec les outils de productivité Google
+- Architecture évolutive capable de gérer un volume croissant de documents
+
+## Cas d'utilisation
+Ce workflow est particulièrement adapté pour :
+- Créer un assistant d'entreprise qui peut répondre aux questions sur les notes de réunion
+- Faciliter la recherche d'informations dans une grande quantité de documents
+- Offrir un accès rapide aux connaissances organisationnelles via une interface conversationnelle
+- Automatiser le traitement et l'indexation des documents importants
+
+Ce système représente une application sophistiquée et pratique de l'IA générative pour améliorer la productivité et l'accès à l'information en entreprise.
