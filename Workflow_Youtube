@@ -1,0 +1,46 @@
+## Fonctionnalité principale
+Ce workflow est conçu pour extraire, analyser et transformer le contenu d'une vidéo YouTube en plusieurs formats utiles pour différents canaux de communication et de marketing.
+
+## Structure du workflow
+
+### 1. Extraction du contenu
+- **Point de départ** : Déclenchement manuel ("When clicking 'Test workflow'")
+- **Source de données** : Le nœud "Youtube Transcript" récupère la transcription complète d'une vidéo YouTube spécifiée
+- La transcription sert de base pour différentes analyses parallèles
+
+### 2. Analyses multifonctions (traitement en parallèle)
+Le workflow traite simultanément la transcription pour produire trois types de contenus différents :
+
+#### A. Synthèse pour email
+- **Agent IA "Synthese"** : Analyse le contenu pour créer un résumé orienté action
+- Format structuré comprenant :
+  - Résumé bref
+  - Thèmes significatifs
+  - Citations et données notables
+  - Recommandations actionables
+- **Distribution** : Envoi direct par Gmail comme brouillon
+
+#### B. Idées de contenu pour médias sociaux
+- **"Social Media Post Ideas"** : Génère 15 idées de contenu classées en :
+  - 5 tutoriels d'automatisation pour n8n
+  - 5 actualités ou nouveautés
+  - 5 vidéos techniques
+- **AI Agent** : Transforme ces idées en titres YouTube viraux (max 70 caractères)
+- **Distribution** : Sauvegarde dans Google Docs
+
+#### C. Insights pour équipes de vente
+- **"Insights Teams"** : Extrait des informations orientées vente :
+  - Points forts des fonctionnalités
+  - Réponses aux objections courantes
+  - Points de vente uniques (USPs)
+  - Statistiques et métriques clés
+- **Distribution** : Partage via Slack dans un canal dédié
+
+## Points forts techniques
+- Traitement parallèle efficace d'une même source de données
+- Prompts très détaillés et spécifiques pour chaque cas d'utilisation
+- Format de sortie structuré grâce au Structured Output Parser
+- Intégration avec multiples canaux de distribution (Gmail, Google Docs, Slack)
+- Adaptable à toute vidéo YouTube (en changeant juste l'URL)
+
+Ce workflow démontre comment transformer efficacement une seule source de contenu (vidéo YouTube) en multiples formats optimisés pour différents canaux de communication, maximisant ainsi la valeur de chaque contenu analysé.
