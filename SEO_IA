@@ -1,0 +1,41 @@
+## Fonctionnalité principale
+Ce workflow est un système complet d'automatisation SEO qui intègre l'intelligence artificielle pour créer, optimiser et publier du contenu de blog de haute qualité avec un référencement optimisé.
+
+## Structure du workflow
+
+Le workflow est divisé en plusieurs sections principales, chacune représentée par une note collante colorée :
+
+### 1. Récupération des articles existants (section bleue)
+- Récupère les articles depuis WordPress et Airtable
+- Compare les datasets pour identifier les contenus déjà existants
+- Stocke les articles dans une table Airtable dédiée
+
+### 2. Vectorisation des articles pour RAG (sections violettes)
+- Transforme les articles en format adapté pour Supabase
+- Stocke les embeddings (vecteurs) dans une base de données vectorielle
+- Surveille automatiquement les ajouts/modifications dans Google Drive
+
+### 3. Analyse concurrentielle avec IA (section orange)
+- Utilise un agent IA spécialisé en SEO pour analyser les contenus concurrents
+- Extraction intelligente des mots-clés, structures et angles via RAG
+- Formatte les résultats dans une structure JSON standardisée
+
+### 4. Génération de contenu optimisé (section verte)
+- Crée des requêtes optimisées pour KoalaWriter (service externe de génération d'articles)
+- Envoie les données vers l'API de KoalaWriter
+- Récupère et analyse les articles générés pour validation SEO
+
+### 5. Publication et stockage (section finale)
+- Publie les articles finalisés sur WordPress
+- Enregistre une copie dans Airtable
+- Met à jour les vecteurs de connaissance pour enrichir la base RAG
+
+## Points forts techniques
+
+1. **Approche RAG avancée** : Utilise Retrieval-Augmented Generation pour analyser la concurrence et créer du contenu différenciant
+2. **Multi-intégrations** : WordPress, Airtable, Google Drive, Supabase, KoalaWriter et OpenAI
+3. **Pipeline intelligent** : Chaque étape est optimisée pour maximiser la qualité SEO
+4. **Double validation IA** : Analyse préalable puis vérification post-génération 
+5. **Structure vectorielle évolutive** : Peut s'enrichir automatiquement des nouveaux contenus
+
+Ce workflow représente une solution complète pour générer automatiquement du contenu optimisé SEO de haute qualité, en s'appuyant sur l'analyse des concurrents pour créer des articles différenciants et performants dans les moteurs de recherche.
