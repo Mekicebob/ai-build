@@ -1,0 +1,38 @@
+Ce workflow n8n "Data Insight Rapide" est conçu pour créer un assistant conversationnel spécialisé dans l'analyse de données financières. Voici son fonctionnement détaillé :
+
+## Fonctionnalité principale
+Ce workflow crée un agent d'analyse financière qui peut répondre à des questions sur différentes classes d'actifs (matières premières, cryptomonnaies, indices boursiers, actions) à partir d'une base de données NocoDB.
+
+## Structure du workflow
+
+### 1. Interface utilisateur
+- **Point d'entrée** : Un déclencheur de chat ("When chat message received") qui permet aux utilisateurs de poser leurs questions financières
+
+### 2. Préparation des données et métadonnées
+- **Initialisation** : "Edit Fields" définit l'ID de la table NocoDB à interroger
+- **Extraction des métadonnées** : "HTTP Request" récupère la structure de la table via l'API NocoDB
+- **Traitement des colonnes** : "Edit Fields1" extrait et formate les noms des colonnes pour l'agent IA
+
+### 3. Cœur intelligent
+- **Agent IA** : Le composant principal qui traite les questions et génère les réponses
+- **Modèle de langage** : OpenAI Chat Model fournit l'intelligence générative
+- **Mémoire** : Window Buffer Memory maintient le contexte de la conversation
+- **Source de données** : NocoDB Tool permet d'interroger la base de données financière
+
+### 4. Configuration spécialisée
+Le prompt système de l'agent détaille les données disponibles pour chaque catégorie d'actifs :
+- Matières premières (gaz naturel, pétrole, métaux précieux)
+- Cryptomonnaies (Bitcoin, Ethereum)
+- Indices boursiers (S&P 500, Nasdaq 100)
+- Actions tech (Apple, Tesla, Microsoft, Google, Nvidia, Netflix, Amazon, Meta)
+
+## Capacités de l'agent
+L'agent est configuré pour :
+1. Répondre à des questions précises sur les prix et volumes
+2. Effectuer des analyses statistiques (moyennes, corrélations)
+3. Suggérer des visualisations de données pertinentes
+4. Identifier des tendances et anomalies
+5. Comparer les performances entre différents actifs
+6. Proposer des recommandations d'investissement basées sur l'historique
+
+Ce workflow est particulièrement utile pour les investisseurs et traders qui souhaitent obtenir rapidement des insights financiers en posant des questions en langage naturel, sans avoir à manipuler directement une base de données complexe.
