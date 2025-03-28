@@ -1,0 +1,33 @@
+## Fonctionnalité principale
+Ce workflow est un système avancé de création d'articles automatisée qui utilise plusieurs agents d'IA travaillant en collaboration pour produire un contenu complet, bien documenté et optimisé pour le SEO.
+
+## Structure du workflow
+
+### 1. Collecte des spécifications
+- Un formulaire permet à l'utilisateur de définir :
+  - Le sujet de l'article
+  - Le nombre de mots souhaité
+  - Le nombre de sections
+  - Le ton de l'article (formel, conversationnel, etc.)
+
+### 2. Système multi-agents en cascade
+- **Agent Recherche** : Effectue des recherches en ligne via Perplexity.ai et crée une table des matières enrichie
+- **Agent Planification** : Structure l'article avec titre, sous-titre, introduction, chapitres et conclusion
+- **Agent Recherche 2** : Rédige chaque chapitre individuellement avec des citations et des sources
+- **Agent Écrivain** : Assemble, édite et optimise l'article final pour assurer cohérence et qualité
+
+### 3. Intégrations externes
+- **Perplexity.ai** pour les recherches en temps réel
+- **Airtable** pour stocker les versions intermédiaires et finales
+- **Google Drive** pour sauvegarder l'article final
+- **Gmail** pour les notifications de fin de processus
+
+## Avantages techniques
+- Répartition dynamique du nombre de mots entre les sections
+- Gestion intelligente du contexte entre chapitres (chaque agent a accès au contenu des chapitres adjacents)
+- Citations correctement formatées avec section de sources
+- Structure optimisée pour le SEO
+- Traçabilité complète du processus de création
+
+Ce workflow est particulièrement adapté pour les créateurs de contenu, les agences marketing ou les entreprises qui ont besoin de produire régulièrement des articles bien documentés avec un minimum d'intervention humaine.
+
