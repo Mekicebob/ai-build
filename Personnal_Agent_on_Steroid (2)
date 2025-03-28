@@ -1,0 +1,34 @@
+## Fonctionnalité principale
+Ce workflow crée un assistant personnel intelligent accessible via Telegram qui intègre de multiples services et sources de données en une interface conversationnelle unifiée.
+
+## Structure du workflow
+
+### 1. Interfaces d'interaction
+- **Interface principale** : Bot Telegram qui accepte les messages texte et vocaux
+- **Surveillance automatique** : Monitoring des nouveaux fichiers dans Google Drive
+
+### 2. Traitement multimodal
+- Les messages texte sont traités directement
+- Les messages vocaux sont convertis en texte via l'API Speech-to-Text d'OpenAI
+- Les documents sont indexés automatiquement pour consultation future
+
+### 3. Cœur intelligent
+- **Agent IA** : Coordonne l'ensemble des services et outils
+- **Mémoire** : PostgreSQL pour maintenir le contexte des conversations
+- **Base de connaissances** : Supabase Vector Store pour stocker et rechercher dans les documents personnels
+
+### 4. Services intégrés
+- **Emails** : Lecture et envoi via Gmail
+- **Calendrier** : Consultation et création d'événements via Google Calendar
+- **Tâches** : Accès aux données dans Airtable
+- **Recherche web** : Via Perplexity.ai pour les informations actuelles
+- **Calculs** : Calculatrice intégrée pour les opérations mathématiques
+
+## Avantages principaux
+- **Centralisation** : Point d'accès unique à tous vos services digitaux
+- **Interface naturelle** : Communication en langage naturel, par texte ou voix
+- **Contextualisation** : Vos documents personnels et l'historique des conversations enrichissent les réponses
+- **Productivité** : Réduction du temps passé à naviguer entre différentes applications
+- **Accessibilité** : Disponible partout où Telegram est accessible
+
+Ce workflow représente un excellent exemple d'assistant personnel augmenté par l'IA, qui transforme une simple conversation Telegram en un hub centralisé pour gérer emails, calendrier, recherches et documents personnels.
