@@ -1,0 +1,51 @@
+Ce workflow est conçu pour extraire automatiquement des informations sur des livres à partir de pages web (probablement Amazon), en combinant l'analyse visuelle (reconnaissance d'images) et l'extraction de données HTML. Les informations récupérées sont ensuite structurées et enregistrées dans une base Airtable.
+
+## Fonctionnalités principales
+
+1. **Double approche d'extraction de données** :
+   - **Analyse visuelle** : Capture des captures d'écran de pages web et utilise l'IA pour analyser visuellement le contenu
+   - **Scraping HTML** : Extraction de données directement depuis le code HTML des pages
+
+2. **Service de scraping externe** : Utilise ScrapingBee (un service de web scraping) pour contourner les protections anti-scraping et récupérer :
+   - Des captures d'écran des pages web complètes
+   - Le code HTML des pages
+
+3. **Agent IA pour l'analyse d'images** : Un agent IA basé sur Google Gemini Pro 1.5 qui peut :
+   - Analyser visuellement les captures d'écran pour identifier les livres et leurs caractéristiques
+   - Structurer les données extraites selon un format prédéfini
+   - Utiliser un outil complémentaire (Scrape_HTML_Page) pour enrichir les informations visuelles
+
+4. **Extraction de données structurées** : Le système extrait spécifiquement :
+   - Nom du livre
+   - Auteur(s)
+   - Type de livre (Broché, Poche, Relié)
+   - Prix
+   - Note (sur 5 étoiles)
+   - Nombre d'avis
+   - URL du livre
+
+5. **Stockage automatisé dans Airtable** : Les données structurées sont automatiquement enregistrées dans une base Airtable dédiée aux livres.
+
+## Architecture technique
+
+1. **Déclencheur manuel** : Le workflow est lancé manuellement pour le test.
+
+2. **Source des URLs** : Les URLs à scraper sont récupérées depuis une table Airtable "Site à scraper".
+
+3. **Services externes** :
+   - **ScrapingBee** : Utilisé pour capturer les screenshots et le HTML (avec émulation de navigateur)
+   - **Google Gemini Pro 1.5** : Modèle d'IA pour l'analyse visuelle et le traitement du langage
+
+4. **Traitement des données** :
+   - Extraction via analyse d'image par IA
+   - Parsing HTML et conversion en Markdown
+   - Structuration des données en JSON via un "Structured Output Parser"
+   - Séparation des résultats pour chaque livre via "Split Out"
+
+5. **Vérification et correction** : Un "Auto-fixing Output Parser" s'assure que les données respectent le format JSON attendu.
+
+6. **Stockage final** : Les données structurées sont enregistrées dans une table Airtable "Livre" avec un schéma prédéfini.
+
+Ce workflow est particulièrement impressionnant car il combine plusieurs techniques avancées d'extraction de données (visuelle et HTML) pour maximiser la qualité et la fiabilité des informations extraites. Il utilise l'IA pour comprendre visuellement le contenu des pages web tout en extrayant également les données brutes du HTML, puis combine ces deux sources pour obtenir des informations complètes et précises sur les livres.
+
+Le système est également robuste face aux mesures anti-scraping grâce à l'utilisation de ScrapingBee, qui gère les proxies et l'émulation de navigateur.
