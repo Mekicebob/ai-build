@@ -1,0 +1,45 @@
+## Objectif principal du workflow
+
+Ce workflow est conçu pour extraire des informations de contacts professionnels (leads) depuis l'API Apollo, les traiter et les stocker dans une base de données Airtable pour une utilisation en prospection commerciale.
+
+## Fonctionnalités principales
+
+1. **Extraction de données Apollo** : Le workflow se connecte à l'API Apollo (plateforme de données B2B) via une requête HTTP pour récupérer des informations sur des prospects potentiels, probablement selon des critères préétablis (bien que ceux-ci ne soient pas visibles dans le workflow).
+
+2. **Traitement des données** : Les données brutes extraites d'Apollo sont traitées pour isoler les informations pertinentes sur chaque prospect :
+   - Informations personnelles (prénom, nom, titre, email, ville)
+   - URL LinkedIn
+   - Informations sur l'entreprise (nom et site web)
+
+3. **Élimination des doublons** : Le nœud "Remove Duplicates" filtre les contacts en double pour assurer la qualité de la base de données.
+
+4. **Stockage dans Airtable** : Les leads sont finalement enregistrés dans une table Airtable nommée "Architecte" (ce qui suggère que ce workflow est spécifiquement configuré pour collecter des contacts d'architectes).
+
+## Architecture technique
+
+Le workflow est relativement simple mais efficace :
+
+1. **Déclencheur manuel** : Le workflow est lancé manuellement via le nœud "When clicking 'Test workflow'".
+
+2. **Requête API** : Une requête HTTP est envoyée à l'API Apollo avec un token d'authentification (masqué dans le code pour des raisons de sécurité).
+
+3. **Traitement des données** : 
+   - Le nœud "Edit Fields" extrait et structure les informations pertinentes de chaque contact
+   - "Remove Duplicates" filtre les entrées dupliquées
+
+4. **Stockage structuré** : Les données sont mappées aux champs correspondants dans Airtable et stockées de manière organisée.
+
+## Note sur l'utilisation (d'après la note jointe au workflow)
+
+Il y a quelques recommandations pratiques mentionnées dans la note explicative :
+
+1. **Outils requis** :
+   - Apollo (source de données de leads)
+   - Apify (pour le scraping)
+   - Airtable/Excel/Google Sheets (pour le stockage)
+
+2. **Limites d'utilisation** :
+   - Ne pas extraire plus de 1000 leads par jour (probablement pour respecter les limites d'API)
+   - Créer un compte Apollo avec une adresse email professionnelle
+
+Ce workflow est un excellent exemple d'automatisation pour la génération de leads B2B, permettant d'alimenter facilement une base de données de prospects qualifiés pour des activités commerciales, notamment dans le secteur de l'architecture selon les paramètres visibles.
