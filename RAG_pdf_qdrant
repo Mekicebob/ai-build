@@ -1,0 +1,33 @@
+## Fonctionnalité principale
+Ce workflow implémente un système RAG (Retrieval-Augmented Generation) qui permet de télécharger un PDF, d'indexer son contenu dans une base de données vectorielle (Qdrant), puis d'interroger ce contenu via une interface de chat.
+
+## Structure du workflow
+
+Le workflow est divisé en deux grandes parties, clairement identifiées par des sticky notes :
+
+### 1. Indexation des données (partie gauche)
+- **Déclencheur** : Bouton manuel "Test Workflow"
+- **Configuration** : Définition de l'URL du fichier Google Drive à traiter
+- **Téléchargement** : Récupération du PDF depuis Google Drive
+- **Extraction** : Conversion du PDF en texte
+- **Vectorisation** : 
+  - Segmentation du texte en morceaux gérables
+  - Création d'embeddings via OpenAI
+  - Stockage dans la base vectorielle Qdrant (collection "rag_test")
+
+### 2. Interface de requête (partie droite)
+- **Déclencheur** : Bouton "Chat" pour poser des questions
+- **Récupération** : 
+  - Connexion à la même base Qdrant
+  - Utilisation du même modèle d'embedding pour convertir la question
+  - Recherche des segments pertinents via "Vector Store Retriever"
+- **Génération** : 
+  - "Question and Answer Chain" qui combine la question et les contextes récupérés
+  - Utilisation du modèle OpenAI pour générer une réponse pertinente
+
+## Avantages de cette approche
+- **Contextualisation** : Les réponses sont basées sur le contenu spécifique du PDF
+- **Précision** : Le système peut répondre à des questions détaillées sur le document
+- **Base de connaissances évolutive** : Possibilité d'ajouter d'autres documents à la même collection
+
+Ce workflow est un excellent exemple d'application pratique de la technique RAG, permettant de créer une interface conversationnelle pour interroger le contenu de documents PDF sans être limité par la taille du contexte des modèles de langage.
