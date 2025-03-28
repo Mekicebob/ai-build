@@ -1,0 +1,27 @@
+## Fonctionnalité principale
+Ce workflow automatise la génération de documents juridiques (mandats exclusifs) en créant une copie d'un modèle, en le remplissant avec des données personnalisées et en l'exportant au format PDF.
+
+## Structure du workflow
+
+### 1. Réception des données (section bleue)
+- **Point d'entrée** : Un webhook qui reçoit les informations du vendeur via une requête POST
+- **Traitement des données** : Le nœud "Edit Fields" extrait et organise les données du formulaire (nom, prénom, date de naissance, profession, email)
+- **Formatage des informations** : Le nœud "Code" construit une phrase structurée avec les informations du vendeur
+
+### 2. Génération et personnalisation du document (section violette)
+- **Création du document** : Copie un modèle Google Docs prédéfini (template de mandat exclusif)
+- **Récupération de la copie** : Utilise l'API Google Drive pour récupérer le nouveau document
+- **Personnalisation** : Remplace les variables du modèle par les données du vendeur
+  - Notamment la variable "{{variable_1}}" est remplacée par le contenu créé dans le nœud "Code"
+- **Exportation** : Convertit le document Google Docs en PDF
+
+### 3. Notification
+- **Alerte** : Envoie une notification dans un canal Slack pour informer de la création du nouveau document
+
+## Points techniques intéressants
+1. **Utilisation de templates** : Le workflow utilise un document modèle avec des variables prédéfinies
+2. **Combinaison d'APIs Google** : Intègre Drive et Docs pour une manipulation complète des documents
+3. **Transformation de données** : Le code JavaScript construit une phrase personnalisée à partir des champs reçus
+4. **Organisation logique** : Le workflow est bien structuré avec des notes pour identifier les différentes sections
+
+Ce workflow est particulièrement utile pour les agences immobilières ou cabinets juridiques qui doivent régulièrement générer des documents personnalisés (mandats, contrats) à partir des informations fournies par leurs clients.
