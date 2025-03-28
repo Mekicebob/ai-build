@@ -1,0 +1,47 @@
+Bonjour ! Voici une analyse détaillée des fonctionnalités du workflow n8n "Détection des Fraudes Input" :
+
+## 1. Système de déclenchement (Google Sheets Trigger)
+- **Fonction principale** : Surveillance automatique de nouvelles transactions bancaires
+- **Configuration technique** :
+  - Vérifie toutes les minutes si de nouvelles lignes sont ajoutées
+  - Surveille spécifiquement la "Feuille 1" du document Google Sheets "Carte Bancaire Log"
+  - Utilise l'événement "rowAdded" pour détecter uniquement les nouvelles entrées
+  - Authentifié via des identifiants OAuth2 spécifiques
+
+## 2. Préparation des données (Edit Fields)
+- **Fonction principale** : Transformation et structuration des données brutes
+- **Opérations réalisées** :
+  - Convertit les données tabulaires en format JSON structuré
+  - Mappe chaque colonne de la feuille vers des champs spécifiques :
+    * "time" : timestamp de la transaction
+    * "V1" à "V28" : caractéristiques anonymisées de la transaction (résultats d'une ACP)
+    * "Amount" : montant de la transaction
+  - Élimine tous les champs non pertinents (includeOtherFields: false)
+
+## 3. Analyse prédictive (HTTP Request)
+- **Fonction principale** : Envoi des données à un modèle d'IA pour analyse
+- **Spécifications techniques** :
+  - Requête POST vers un endpoint AWS Lambda (région Asie-Pacifique Sud-Est)
+  - Structure le corps de la requête selon un format précis attendu par le modèle ML
+  - Envoie les données en double (deux tableaux identiques) pour répondre aux exigences de l'API
+  - Transmet toutes les 30 caractéristiques (time, V1-V28, Amount) nécessaires à l'analyse
+
+## 4. Enregistrement des résultats (Google Sheets)
+- **Fonction principale** : Stockage des prédictions pour consultation et suivi
+- **Mécanisme de fonctionnement** :
+  - Écrit les résultats dans la "Feuille 2" du même document Google Sheets
+  - Utilise l'opération "appendOrUpdate" pour ajouter de nouvelles prédictions ou mettre à jour celles existantes
+  - Mappe automatiquement la sortie de l'API vers une colonne nommée "predictions"
+  - Cette colonne contient probablement soit une classification binaire (fraude/non-fraude), soit un score de probabilité
+
+## Flux de données complet
+1. Une nouvelle transaction est ajoutée dans la Feuille 1
+2. Le workflow est automatiquement déclenché
+3. Les données sont extraites et formatées selon la structure requise
+4. Les données structurées sont envoyées au modèle ML via API
+5. Le modèle analyse les transactions et renvoie une prédiction
+6. La prédiction est enregistrée dans la Feuille 2 pour consultation
+
+Ce workflow illustre parfaitement l'intégration de n8n avec des services externes d'IA pour automatiser des processus métier critiques comme la détection de fraudes.
+
+Souhaitez-vous des précisions sur un aspect particulier de ce workflow ou des conseils pour l'adapter à d'autres cas d'utilisation ?
