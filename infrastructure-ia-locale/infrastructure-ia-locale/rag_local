@@ -1,0 +1,47 @@
+Objectif principal du workflow
+Ce workflow est conçu pour créer un agent conversationnel (chatbot) basé sur un système RAG (Retrieval-Augmented Generation) qui peut répondre aux questions des utilisateurs en s'appuyant sur une base de connaissances stockée dans une base de données vectorielle Qdrant. Ce chatbot semble être spécialisé dans les textes juridiques français.
+Fonctionnalités principales
+
+Interface de chat : Le workflow démarre lorsqu'un message est reçu via une interface de chat (nœud "When chat message received").
+Agent IA intelligent : Le cœur du système est un agent IA qui traite les questions des utilisateurs et formule des réponses à l'aide de plusieurs outils.
+Système RAG (Retrieval-Augmented Generation) :
+
+Utilise une base de données vectorielle Qdrant pour stocker et rechercher des informations pertinentes
+La base semble contenir des textes juridiques français ("texte_loi_français")
+L'agent peut interroger cette base de connaissances pour enrichir ses réponses
+
+
+Mémoire conversationnelle : Le nœud "Window Buffer Memory" permet à l'agent de se souvenir des échanges précédents dans la conversation pour maintenir le contexte.
+Enregistrement des interactions : Toutes les interactions sont enregistrées dans une base Airtable avec:
+
+L'entrée utilisateur
+La réponse générée
+L'horodatage
+Le modèle LLM utilisé (gpt-4o)
+Les journaux d'erreurs éventuelles
+
+
+Chargement et traitement de documents :
+
+Une partie du workflow (déclenchée manuellement) permet de charger un fichier PDF depuis GitHub
+Le PDF est extrait, traité et divisé en segments (chunks)
+Ces segments sont ensuite convertis en embeddings et stockés dans la base vectorielle Qdrant
+
+
+
+Architecture technique
+Le workflow utilise plusieurs technologies avancées:
+
+Modèles de langage : Utilise OpenAI (probablement GPT-4o) pour la génération de réponses.
+Embeddings : Des embeddings OpenAI sont utilisés pour convertir le texte en représentations vectorielles.
+Base de données vectorielle : Qdrant est utilisé pour stocker efficacement les embeddings et permettre une recherche sémantique.
+Traitement de documents :
+
+Extraction de texte à partir de PDF
+Découpage en segments avec chevauchement (200 caractères)
+Chargement dans la base vectorielle
+
+
+Stockage des logs : Airtable est utilisé pour conserver l'historique des interactions.
+
+Ce workflow permet donc de créer un assistant conversationnel intelligent spécialisé dans un domaine spécifique (probablement le droit français) qui peut répondre aux questions des utilisateurs en se basant sur des documents juridiques. La partie manuelle du workflow permet de mettre à jour la base de connaissances en y ajoutant de nouveaux documents PDF.RéessayerClaude peut faire des erreurs. Assurez-vous de vérifier ses réponses.
