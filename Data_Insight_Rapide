@@ -1,0 +1,49 @@
+## Fonctionnalité principale
+Ce workflow crée un assistant IA conversationnel spécialisé dans l'analyse des données financières. Il permet aux utilisateurs de poser des questions en langage naturel sur différents actifs financiers (actions, cryptomonnaies, matières premières) et d'obtenir des analyses détaillées basées sur les données réelles.
+
+## Architecture du workflow
+
+### 1. Interface utilisateur et déclencheur
+- **When chat message received** : Crée une interface de chat permettant aux utilisateurs d'interagir avec l'assistant
+- Le workflow est activé chaque fois qu'un message est reçu dans cette interface
+
+### 2. Préparation et contexte des données
+- **Edit Fields** : Initialise l'ID de la table contenant les données financières
+- **HTTP Request** : Interroge l'API NocoDB pour récupérer la structure de la table
+- **Edit Fields1** : Extrait les noms des colonnes pour que l'agent comprenne les données disponibles
+
+### 3. Composants d'intelligence artificielle
+- **OpenAI Chat Model** : Utilise le modèle de langage d'OpenAI comme moteur de raisonnement
+- **Window Buffer Memory** : Maintient l'historique des conversations pour assurer la cohérence
+- **NocoDB** : Connecte l'agent à la base de données financières pour accéder aux données en temps réel
+
+### 4. Agent d'analyse
+- **AI Agent** : Le composant central qui :
+  - Reçoit les questions de l'utilisateur
+  - Comprend le contexte financier grâce à un prompt système détaillé
+  - Interroge la base de données NocoDB pour obtenir les informations pertinentes
+  - Formule des réponses analytiques et des recommandations
+
+## Données financières accessibles
+L'agent a accès à une base de données complète contenant :
+- **Matières premières** : Prix et volumes du gaz, pétrole, métaux précieux
+- **Cryptomonnaies** : Bitcoin et Ethereum
+- **Indices** : S&P 500, Nasdaq 100
+- **Actions tech** : Apple, Tesla, Microsoft, Google, Nvidia, Netflix, Amazon, Meta
+- **Autres actions** : Berkshire Hathaway
+
+## Capacités d'analyse
+L'assistant peut :
+- Répondre à des questions factuelles sur les prix et les tendances
+- Effectuer des calculs statistiques (moyennes, corrélations, etc.)
+- Identifier des tendances et anomalies dans les données
+- Comparer les performances entre différents actifs
+- Suggérer des visualisations pertinentes
+- Proposer des recommandations basées sur l'analyse historique
+
+## Valeur ajoutée
+Ce workflow transforme des données financières complexes en insights accessibles via une simple conversation, permettant aux utilisateurs sans compétences techniques de :
+- Obtenir rapidement des analyses financières sophistiquées
+- Explorer les relations entre différents marchés
+- Prendre des décisions plus éclairées en matière d'investissement
+
