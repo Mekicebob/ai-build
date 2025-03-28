@@ -1,0 +1,38 @@
+## Fonctionnalité principale
+Ce workflow est conçu pour comparer les performances de différents modèles d'IA (GPT-4o, Deepseek R1, Claude Sonnet) sur les mêmes prompts, et analyser leurs résultats pour déterminer lequel performe le mieux.
+
+## Structure du workflow
+
+### 1. Préparation et sécurisation des données
+- **Point d'entrée** : Un déclencheur de chat ("When chat message received")
+- **Anonymisation** : Exécution d'un workflow séparé ("Anonymisation Données") pour sécuriser les informations sensibles
+- **Stockage intermédiaire** : Sauvegarde des données anonymisées dans Airtable
+
+### 2. Évaluation parallèle par différents modèles
+Le workflow soumet simultanément le même prompt à trois modèles d'IA différents :
+- **GPT-4o** : Via l'API OpenAI
+- **Deepseek R1** : Via openrouter
+- **Claude 3.5 Sonnet** : Via openrouter
+
+Chaque modèle :
+- Reçoit exactement le même prompt anonymisé
+- Possède sa propre mémoire tampon pour maintenir le contexte
+- Traite la requête indépendamment des autres
+
+### 3. Stockage des résultats
+- Chaque output de modèle est sauvegardé dans une table Airtable dédiée
+- Les colonnes correspondent aux différents modèles testés
+- Le système conserve la traçabilité entre prompts et réponses
+
+### 4. Analyse comparative
+- **Fusion** : Le nœud "Merge" combine les résultats des trois modèles
+- **Agrégation** : Le nœud "Aggregate" rassemble les données pour comparaison
+- **Analyse finale** : Un modèle GPT-4o final analyse les différentes réponses pour déterminer quelle approche était la plus performante
+
+## Aspects techniques notables
+- **Sécurité renforcée** : Utilisation d'un système d'anonymisation des données sensibles
+- **Architecture parallèle** : Traitement simultané par plusieurs modèles
+- **Analyse métacognitive** : Un modèle d'IA évalue d'autres modèles d'IA
+- **Stockage structuré** : Organisation des données dans Airtable pour faciliter l'analyse
+
+Ce workflow représente un système sophistiqué de Model Output Analysis (MOA), particulièrement utile pour les équipes d'IA qui souhaitent comparer objectivement les performances de différents modèles et déterminer lequel convient le mieux à leurs besoins spécifiques.
