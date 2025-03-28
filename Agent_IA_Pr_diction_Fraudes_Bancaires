@@ -1,0 +1,31 @@
+Objectif principal du workflow
+Ce workflow crée un agent IA qui analyse des données de transactions bancaires stockées dans Google Sheets pour identifier d'éventuelles fraudes. Il est accessible via une API webhook, ce qui permet de l'intégrer facilement à d'autres systèmes.
+Fonctionnalités principales
+
+Point d'entrée API : Le workflow est déclenché par un webhook (HTTP POST à un endpoint "testing"), permettant d'appeler ce service depuis n'importe quelle application externe.
+Agent IA spécialisé : Un agent d'intelligence artificielle configuré spécifiquement pour l'analyse de fraudes bancaires.
+Connexion à Google Sheets : L'agent a accès à un fichier Google Sheets contenant les données de transactions et leurs prédictions de fraude.
+Analyse automatique des prédictions : L'agent analyse la colonne "predictions" qui contient des classifications sous forme de listes:
+
+[1, 1] pour les transactions potentiellement frauduleuses
+[0, 0] pour les transactions légitimes
+
+
+Réponse formatée : L'agent retourne une réponse claire et concise:
+
+En cas de fraudes détectées: "Il y a eu [X] fraudes bancaires potentielles détectées."
+Sans fraude: "Aucune fraude bancaire potentielle n'a été détectée."
+
+
+Réponse HTTP : Les résultats sont renvoyés au client qui a initié la requête via le nœud "Respond to Webhook".
+
+Architecture technique
+Ce workflow relativement simple mais efficace utilise:
+
+Webhook : Pour recevoir les requêtes HTTP.
+Agent IA : Utilise GPT-4 via l'API OpenAI pour comprendre le contexte et analyser les données.
+Outil Google Sheets : Connecte l'agent à une feuille de calcul spécifique ("Carte Bancaire Log", feuille "Feuille 2").
+Réponse webhook : Renvoie les résultats au client.
+
+Ce workflow est un excellent exemple d'utilisation pratique de l'IA pour automatiser l'analyse de données financières sensibles. Le système permet de détecter rapidement des fraudes potentielles sans intervention humaine, en se basant vraisemblablement sur un modèle de machine learning préalablement entraîné dont les prédictions sont stockées dans Google Sheets.
+La configuration relativement simple permet de l'intégrer facilement à des systèmes de surveillance financière plus larges, ce qui en fait un outil précieux pour les équipes de sécurité bancaire.
