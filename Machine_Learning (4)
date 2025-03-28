@@ -1,0 +1,27 @@
+Ce workflow s'appelle "Machine Learning" et il est conçu pour l'estimation de prix immobiliers. Voici comment il fonctionne :
+
+## Fonctionnalité principale
+Ce workflow crée un assistant conversationnel qui peut estimer le prix d'un bien immobilier à partir d'une description en langage naturel, en utilisant un modèle de régression linéaire.
+
+## Structure du workflow
+1. **Interface utilisateur** : Un déclencheur de chat ("When chat message received") qui attend les messages des utilisateurs
+
+2. **Traitement de l'information** :
+   - Un agent IA qui extrait 5 variables spécifiques du message de l'utilisateur :
+     * Revenu moyen de la zone
+     * Âge moyen des maisons
+     * Nombre moyen de pièces
+     * Nombre moyen de chambres
+     * Population de la zone
+   - Un parseur qui structure ces données en format JSON
+
+3. **Prédiction** :
+   - Une requête HTTP qui envoie ces variables à un service API externe (sur l'adresse IP locale 192.168.1.202)
+   - Le service externe utilise un modèle de régression linéaire pour prédire le prix
+
+4. **Réponse à l'utilisateur** :
+   - Un second agent IA qui reformule la prédiction en une phrase naturelle : "La prédiction de votre bien immobilier est de X $"
+
+## Intérêt pratique
+Ce workflow illustre comment combiner l'IA générative (pour l'interface conversationnelle) avec un modèle de machine learning traditionnel (pour la prédiction précise) afin de créer une solution complète et facile à utiliser.
+
