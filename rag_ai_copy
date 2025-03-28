@@ -1,0 +1,23 @@
+Ce workflow est un assistant IA avancé qui utilise la technique RAG (Retrieval Augmented Generation) pour répondre aux questions en s'appuyant sur vos documents. Voici ses principales fonctionnalités:
+
+1. Surveillance automatique de dossiers Google Drive:
+   - Le workflow surveille un dossier spécifique "Rapports Campagne d'ADS" toutes les minutes
+   - Il détecte à la fois les nouveaux fichiers ajoutés et les fichiers mis à jour
+
+2. Traitement des documents:
+   - Téléchargement automatique des fichiers détectés dans Google Drive
+   - Conversion des documents en texte brut
+   - Découpage intelligent du texte pour faciliter l'indexation
+   - Extraction et stockage du contenu dans une base vectorielle Supabase
+
+3. Système de chat intelligent:
+   - Interface de chat accessible via webhook
+   - Utilisation de GPT-4o pour générer des réponses
+   - Mémoire des conversations stockée dans PostgreSQL
+   - Capacité à rechercher et utiliser les informations de vos documents
+
+4. Technologies utilisées:
+   - OpenAI pour les modèles de langage (GPT-4o) et d'embeddings
+   - Google Drive pour le stockage et la surveillance des documents
+   - Supabase comme base de données vectorielle
+   - PostgreSQL pour la mémoire des conversations
